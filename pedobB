@@ -1,0 +1,69 @@
+--###########################################################################--
+
+
+-->>	Volibear the Pedobear by Fellas v.1.0					   
+																	   
+                                                                        
+--###########################################################################--
+
+if myHero.charName ~= "Volibear" then return end
+
+if FileExist(LIB_PATH .. "/VPrediction.lua") then
+	require "VPrediction"
+	else return end
+	
+
+
+local ts 
+ts = TargetSelector(TARGET_LOW_HP_PRIORITY,1000)
+
+local qrange, wrange, erange, rrange = 600,405,425,130
+local VP
+local version = "1.0"
+local author = "Fellas"
+local ignite = nil
+local Smite = nil
+local fSequence = 2, 3, 2, 1, 2, 4, 3, 2, 1, 2, 4, 3, 1, 3, 1, 4, 3, 1
+
+
+function OrbC()
+if _G.AutoCarry then
+	 print("<font color='#FF999'>SAC detected.")
+	 SACLoaded = true
+	 elseif _G.MMA_Loaded then
+	 print("<font color='#FF999'> MMA detected.")
+	 MMALoaded = true
+	 elseif _Pewalk then
+	 print("<font color='#FF999'>Pewalk detected.")
+	 PEW = true
+	 elseif _G.NebelwolfisOrbWalkerInit then
+	 WOLFY = true
+	 print("<font color='#FF999'>NebelwolfisOrbWalker detected.")
+	 elseif FileExist(LIB_PATH .. "/SxOrbWalk.lua") then
+	 require("SxOrbWalk")
+	 print("<font color='#FF999'>SxOrb detected.")
+   SxMenu = scriptConfig("SxOrbWalk", "SxOrb")
+	 SxOrb:LoadToMenu(SxMenu)
+   elseif not FileExist(LIB_PATH .. "/SxOrbWalk") then
+	 print ("<font color='#FF999'>No OrbWalker detected.")
+end
+end
+
+
+
+function OnLoad()
+VP = VPrediction()
+DelayAction(OrbC,10)
+
+--settings--
+f = scriptConfig("Grizzly Volibear", "bear")
+f:addSubMenu("["..myHero.charName.." - Keys]", "keys")
+f.keys:addParam("Combo", "combo", SCRIPT_PARAM_ONKEYDOWN, false, 32)
+f.keys:addParam("Laneclear", "laneclear", SCRIPT_PARAM_ONKEYDOWN, false, string.byte ("X"))
+f.keys:addParam("Jungleclear", "jungleclear", SCRIPT_PARAM_ONKEYDOWN, false, string.byte ("X"))
+f.keys:addParam("Herass", "Herass", SCRIPT_PARAM_ONKEYDOWN, false, string.byte ("C"))
+
+f.keys:permaShow("Combo")
+
+end
+
