@@ -10,7 +10,7 @@ local lSequence = {1,3,1,2,1,4,1,3,1,3,4,3,3,2,2,4,2,2}
 local ts
 ts = TargetSelector(TARGET_LESS_CAST_PRIORITY, 1000, DAMAGE_PHYSICAL, true)
 local eRange = 125
-local ignite = nil
+local Ignite = nil
 
 
 function OnLoad()
