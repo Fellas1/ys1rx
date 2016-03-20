@@ -3,21 +3,20 @@
 --#           											                       #--
 --##########################################################--
 
-
 local version = 0.1
 local author = 'HoxHud'
 local lSequence = {1,3,1,2,1,4,1,3,1,3,4,3,3,2,2,4,2,2}
 local ts
 ts = TargetSelector(TARGET_LESS_CAST_PRIORITY, 1000, DAMAGE_PHYSICAL, true)
-local eRange = 125
-local Ignite = nil
+local eRange = 150
+local ignite = nil
 
 
 function OnLoad()
 	SummonerSpell()
 	Menu = scriptConfig ('Singed Helper', 'Singed')
 	Menu:addParam("info", "Version:", SCRIPT_PARAM_INFO, ""..version.."")
-        Menu:addParam("info2", "Author:", SCRIPT_PARAM_INFO, ""..author.."")
+  Menu:addParam("info2", "Author:", SCRIPT_PARAM_INFO, ""..author.."")
 	Menu:addSubMenu('[' ..myHero.charName..'] - R Settings', 'rSets')
 	Menu:addSubMenu('[' ..myHero.charName.. ']- KS Settings', 'ksSets')
 	Menu:addSubMenu('[' ..myHero.charName.. ']- Interrupt', 'interSets')
@@ -50,6 +49,7 @@ function OnTick()
 	Ignite()
 	levelSett()
 	autoUltt()
+	kkkkk()
 end
 
 function Ignite()
@@ -72,9 +72,23 @@ end
 
 
 function autoUltt()
-	if ValidTarget(ts.target, 1075) then
+	if ValidTarget(ts.target, 1075) and Menu.rSets.rUse then
 	if not player.dead and ((player.health * 100 ) / player.maxHealth) <= Menu.rSets.pSets and player:CanUseSpell(_R) == READY then
        CastSpell(_R)
  end
 end
 end
+
+function kkkkk()
+	for i, enemy in ipairs (GetEnemyHeroes()) do
+		if Menu.ksSets.ksEuse then 
+			if GetDistance(enemy) < eRange and ValidTarget(enemy) and not enemy.dead then
+				if getDmg("E", enemy, myHero ) *0.94 +50 > enemy.health then
+					CastSpell(_E, enemy)
+				end
+			end
+		end
+end
+
+end
+
