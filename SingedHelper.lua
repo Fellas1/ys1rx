@@ -1,7 +1,10 @@
 --#                                                        #--
 --#            basic Singed Helper 1.0                     #--
---#           											                       #--
+--#                                                        #--
 --##########################################################--
+
+if myHero.charName ~= 'Singed' then return end
+
 
 local version = 0.1
 local author = 'HoxHud'
@@ -16,7 +19,7 @@ function OnLoad()
 	SummonerSpell()
 	Menu = scriptConfig ('Singed Helper', 'Singed')
 	Menu:addParam("info", "Version:", SCRIPT_PARAM_INFO, ""..version.."")
-  Menu:addParam("info2", "Author:", SCRIPT_PARAM_INFO, ""..author.."")
+        Menu:addParam("info2", "Author:", SCRIPT_PARAM_INFO, ""..author.."")
 	Menu:addSubMenu('[' ..myHero.charName..'] - R Settings', 'rSets')
 	Menu:addSubMenu('[' ..myHero.charName.. ']- KS Settings', 'ksSets')
 	Menu:addSubMenu('[' ..myHero.charName.. ']- Interrupt', 'interSets')
