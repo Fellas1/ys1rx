@@ -40,9 +40,9 @@ function OnLoad()
 end
 
 function SummonerSpell()
-	if myHero:GetSpellData(SUMMONER_1).name:find('summonerdot') then
+	if myHero:GetSpellData(SUMMONER_1).name:find("summonerdot") then
 		ignite = SUMMONER_1
-		elseif myHero:GetSpellData(SUMMONER_2).name:find('summonerdot') then
+		elseif myHero:GetSpellData(SUMMONER_2).name:find("summonerdot") then
 			ignite = SUMMONER_2
 		end
 end
@@ -58,7 +58,7 @@ end
 function Ignite()
 	local iDmg = (50 + (20 * myHero.level))
 	for i, enemy in ipairs(GetEnemyHeroes()) do
-		if GetDistance(enemy, myHero) < 600 and ValidTarget(enemy, 600) and Menu.ksSets.igniteUse then
+		if GetDistance(enemy, myHero) < 600 and ValidTarget(enemy, 600) and (((Menu.ksSets.igniteUse))) then
 			if myHero:CanUseSpell(ignite) == READY then
 				if enemy.health < iDmg then
 					CastSpell(ignite, enemy)
