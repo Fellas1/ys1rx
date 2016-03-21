@@ -52,7 +52,7 @@ function OnTick()
 	Ignite()
 	levelSett()
 	autoUltt()
-	kkkkk()
+	killstealE()
 end
 
 function Ignite()
@@ -82,7 +82,7 @@ function autoUltt()
 end
 end
 
-function kkkkk()
+function killstealE()
 	for i, enemy in ipairs (GetEnemyHeroes()) do
 		if Menu.ksSets.ksEuse then 
 			if GetDistance(enemy) < eRange and ValidTarget(enemy) and not enemy.dead then
