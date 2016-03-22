@@ -13,6 +13,7 @@ local ts
 ts = TargetSelector(TARGET_LESS_CAST_PRIORITY, 1000, DAMAGE_PHYSICAL, true)
 local eRange = 150
 local ignite = nil
+local iDMG = 0
 
 
 function OnLoad()
